@@ -54,7 +54,8 @@ Apps screen" />
             android:text="@string/rebuild"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:strokeColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
+            app:strokeColor="@color/colorAccent"
             app:layout_constraintStart_toEndOf="@id/text_branch"
             app:layout_constraintTop_toBottomOf="@id/text_commit_message" />
     </androidx.constraintlayout.widget.ConstraintLayout>

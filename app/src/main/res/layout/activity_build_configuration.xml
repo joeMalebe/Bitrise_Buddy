@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.build.BuildConfigurationActivity">
+    tools:context=".ui.build.build_configuration.BuildConfigurationActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"

@@ -9,8 +9,7 @@ import android.widget.ArrayAdapter
 import za.co.app.bitrisebuddy.R
 import za.co.app.bitrisebuddy.databinding.FragmentBasicBuildBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -20,7 +19,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class BasicBuildFragment(private val availableBranches: List<String>, private val availableWorkflows: List<String>) : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding : FragmentBasicBuildBinding
@@ -49,15 +48,7 @@ class BasicBuildFragment(private val availableBranches: List<String>, private va
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BasicBuild.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(availableBranches: List<String>) =
             BasicBuildFragment(availableBranches, availableBranches).apply {

@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="gutterSpace">16dp</dimen>
+    <dimen name="gutterspacehalf">8dp</dimen>
+    <dimen name="build_image_big">32dp</dimen>
 </resources>

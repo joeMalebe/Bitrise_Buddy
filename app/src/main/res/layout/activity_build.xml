@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.build.BuildActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorBackgroundLight"
+        app:cardCornerRadius="20dp"
+        app:contentPadding="@dimen/gutterSpace"
+        app:strokeColor="@color/colorAccent"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_app_icon"
+                android:layout_width="@dimen/build_image_big"
+                android:layout_height="@dimen/build_image_big"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/text_status"
+                style="@style/text_body_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/gutterSpace"
+                app:layout_constraintEnd_toEndOf="@id/image_app_icon"
+                app:layout_constraintStart_toStartOf="@id/image_app_icon"
+                app:layout_constraintTop_toBottomOf="@id/image_app_icon"
+                tools:text="Success" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_status">
+
+                <TextView
+                    android:id="@+id/text_commit_message"
+                    style="@style/text_body_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    tools:text="Merge pull request #7 from joeMalebe/apps_screen
+Apps screen" />
+
+                <TextView
+                    android:id="@+id/text_triggered_workflow"
+                    style="@style/text_body_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    tools:text="deploy" />
+
+                <TextView
+                    android:id="@+id/text_branch"
+                    style="@style/text_body_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    tools:text="develop" />
+
+                <TextView
+                    style="@style/text_body_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    android:text="@string/build_tags"/>
+
+                <TextView
+                    android:id="@+id/text_build_tags"
+                    style="@style/text_body_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterspacehalf"
+                    tools:text="
+--linux-docker-android-20.04, --standard, --free" />
+
+                <TextView
+                    style="@style/text_body_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    android:text="@string/started_on_worker_at"/>
+
+                <TextView
+                    android:id="@+id/text_started_on"
+                    style="@style/text_body_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterspacehalf"
+                    tools:text="2021-11-04 21:34:30" />
+
+                <TextView
+                    style="@style/text_body_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    android:text="@string/finished_at"/>
+
+                <TextView
+                    android:id="@+id/text_finished_at"
+                    style="@style/text_body_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/gutterspacehalf"
+                    tools:text="2021-11-04 21:34:30" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rebuild"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    android:id="@+id/button_rebuild"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abort"
+                    android:layout_marginTop="@dimen/gutterSpace"
+                    android:id="@+id/button_abort"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

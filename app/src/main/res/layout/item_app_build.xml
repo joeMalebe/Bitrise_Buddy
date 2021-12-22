@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/gutterSpace"
+    android:backgroundTint="@color/colorBackgroundLight"
+    app:contentPadding="@dimen/gutterSpace">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_commit_message"
+            style="@style/text_body_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutterspacehalf"
+            app:layout_constraintEnd_toStartOf="@id/text_triggered_workflow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Merge pull request #7 from joeMalebe/apps_screen
+Apps screen" />
+
+        <TextView
+            android:id="@+id/text_triggered_workflow"
+            style="@style/text_body_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toEndOf="@id/text_commit_message"
+            app:layout_constraintTop_toTopOf="@id/text_commit_message"
+            tools:text="deploy" />
+
+        <TextView
+            android:id="@+id/text_branch"
+            style="@style/text_body_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gutterSpace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_commit_message"
+            tools:text="develop" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_marginStart="@dimen/gutterSpace"
+            android:layout_marginTop="@dimen/gutterSpace"
+            android:text="@string/rebuild"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:strokeColor="@color/colorPrimary"
+            app:layout_constraintStart_toEndOf="@id/text_branch"
+            app:layout_constraintTop_toBottomOf="@id/text_commit_message" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

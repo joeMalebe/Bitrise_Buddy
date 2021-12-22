@@ -18,7 +18,7 @@
 
         <activity
             android:exported="false"
-            android:name=".ui.build.BuildConfigurationActivity"
+            android:name=".ui.build.build_configuration.BuildConfigurationActivity"
             android:theme="@style/BitriseBuddyTheme" />
 
         <activity

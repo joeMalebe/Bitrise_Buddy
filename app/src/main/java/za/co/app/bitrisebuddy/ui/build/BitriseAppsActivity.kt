@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import za.co.app.bitrisebuddy.databinding.ActivityBitriseAppsBinding
+import za.co.app.bitrisebuddy.ui.build.build_configuration.BuildConfigurationActivity
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewModel
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewState.*
 

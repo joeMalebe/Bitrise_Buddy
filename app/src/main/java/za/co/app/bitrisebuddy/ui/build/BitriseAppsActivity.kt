@@ -37,19 +37,22 @@ class BitriseAppsActivity : AppCompatActivity() {
         setContentView(binding.root)
         if(intent.hasExtra(EXTRA_APP_TITLE)) {
             binding.pageHeader.textTitle.text = intent.getStringExtra(EXTRA_APP_TITLE)
+
         }
         if (intent.hasExtra(EXTRA_APP_SLUG)) {
             val appSlug = intent.getStringExtra(EXTRA_APP_SLUG)
             viewModel.loadAppBuilds(appSlug ?: "")
 
-            viewModel.viewState.observe(this, {
-                when (it) {
+            viewModel.viewState.observe(this, { viewState ->
+            when (viewState) {
                     is Error -> {
 
                     }
                     is AppBuildsLoaded -> {
-
-                        binding.recyclerBuilds.adapter = BitriseAppsAdapter(it.builds)
+                        binding.pageHeader.buttonStartBuild.setOnClickListener {
+                            startActivity(BuildConfigurationActivity.getStartIntent(this, viewState.builds))
+                        }
+                        binding.recyclerBuilds.adapter = BitriseAppsAdapter(viewState.builds)
                         binding.recyclerBuilds.layoutManager = LinearLayoutManager(this)
                     }
                     is Loading -> {

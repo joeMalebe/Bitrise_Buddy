@@ -7,7 +7,7 @@ import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentPagerAdapter
 import za.co.app.bitrisebuddy.databinding.ActivityBuildConfigurationBinding
-import za.co.app.bitrisebuddy.model.data.models.V0AppResponseItemModel
+import za.co.app.bitrisebuddy.model.data.models.V0BuildResponseItemModel
 import za.co.app.bitrisebuddy.ui.landing.LandingActivity
 
 
@@ -24,7 +24,7 @@ class BuildConfigurationActivity : AppCompatActivity() {
         const val EXTRA_APPS = "EXTRA_APPS"
 
         @JvmStatic
-        fun getStartIntent(context: Context, apps: List<V0AppResponseItemModel>): Intent {
+        fun getStartIntent(context: Context, apps: List<V0BuildResponseItemModel>): Intent {
             with(Intent(context, LandingActivity::class.java)) {
                 putParcelableArrayListExtra(EXTRA_APPS, apps as ArrayList<out Parcelable>?)
                 return this

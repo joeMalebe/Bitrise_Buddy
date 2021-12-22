@@ -6,8 +6,10 @@
 
 package za.co.app.bitrisebuddy.model.data.models
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
 /**
  * @property abortReason
@@ -37,14 +39,15 @@ import com.squareup.moshi.JsonClass
  * @property triggeredWorkflow
  */
 @JsonClass(generateAdapter = true)
-data class V0BuildResponseItemModel(
+@Parcelize
+data class V0BuildResponseItemModel (
     @Json(name = "abort_reason") @field:Json(name = "abort_reason") var abortReason: String? = null,
     @Json(name = "branch") @field:Json(name = "branch") var branch: String? = null,
     @Json(name = "build_number") @field:Json(name = "build_number") var buildNumber: Int? = null,
     @Json(name = "commit_hash") @field:Json(name = "commit_hash") var commitHash: String? = null,
     @Json(name = "commit_message") @field:Json(name = "commit_message") var commitMessage: String? = null,
     @Json(name = "commit_view_url") @field:Json(name = "commit_view_url") var commitViewUrl: String? = null,
-    @Json(name = "credit_cost") @field:Json(name = "credit_cost") var creditCost: NullsInt64? = null,
+    @Json(name = "credit_cost") @field:Json(name = "credit_cost") var creditCost: Int? = null,
     @Json(name = "environment_prepare_finished_at") @field:Json(name = "environment_prepare_finished_at") var environmentPrepareFinishedAt: String? = null,
     @Json(name = "finished_at") @field:Json(name = "finished_at") var finishedAt: String? = null,
     @Json(name = "is_on_hold") @field:Json(name = "is_on_hold") var isOnHold: Boolean? = null,
@@ -63,4 +66,4 @@ data class V0BuildResponseItemModel(
     @Json(name = "triggered_at") @field:Json(name = "triggered_at") var triggeredAt: String? = null,
     @Json(name = "triggered_by") @field:Json(name = "triggered_by") var triggeredBy: String? = null,
     @Json(name = "triggered_workflow") @field:Json(name = "triggered_workflow") var triggeredWorkflow: String? = null
-)
+) : Parcelable

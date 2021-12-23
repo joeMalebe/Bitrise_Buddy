@@ -9,6 +9,7 @@ import retrofit2.Response
 import za.co.app.bitrisebuddy.model.data.apis.BuildsApi
 import za.co.app.bitrisebuddy.model.data.models.V0BuildListAllResponseModel
 import za.co.app.bitrisebuddy.model.data.models.V0BuildListResponseModel
+import za.co.app.bitrisebuddy.model.data.models.V0BuildTriggerRespModel
 import javax.inject.Inject
 
 class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,private val context: Context) :
@@ -47,5 +48,14 @@ class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,priv
                 token
             )
         }
+    }
+
+    override suspend fun triggerBuild(
+        appSlug: String,
+        branch: String,
+        workflow: String,
+        message: String
+    ): Response<V0BuildTriggerRespModel> {
+        TODO("Not yet implemented")
     }
 }

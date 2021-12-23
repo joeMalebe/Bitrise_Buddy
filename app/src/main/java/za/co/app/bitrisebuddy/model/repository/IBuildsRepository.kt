@@ -5,6 +5,7 @@ import retrofit2.Response
 import za.co.app.bitrisebuddy.model.data.models.V0BuildListAllResponseModel
 import za.co.app.bitrisebuddy.model.data.models.V0BuildListResponseModel
 import za.co.app.bitrisebuddy.model.data.models.V0BuildTriggerRespModel
+import za.co.app.bitrisebuddy.model.data.models.V0BuildWorkflowListResponseModel
 
 interface IBuildsRepository {
     suspend fun getLatestBuildsAsync(): Deferred<Response<V0BuildListAllResponseModel>>
@@ -14,4 +15,5 @@ interface IBuildsRepository {
         branch: String,
         workflowId: String
     ): Response<V0BuildTriggerRespModel>
+    suspend fun workflows(appSlug: String): Response<V0BuildWorkflowListResponseModel>
 }

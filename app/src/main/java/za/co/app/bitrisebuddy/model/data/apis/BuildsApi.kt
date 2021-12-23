@@ -166,6 +166,7 @@ interface BuildsApi {
     )
     @GET("apps/{app-slug}/build-workflows")
     suspend fun buildWorkflowList(
-        @retrofit2.http.Path("app-slug") appSlug: String
-    ): V0BuildWorkflowListResponseModel
+        @retrofit2.http.Path("app-slug") appSlug: String,
+        @Header("Authorization") accessToken: String
+    ): Response<V0BuildWorkflowListResponseModel>
 }

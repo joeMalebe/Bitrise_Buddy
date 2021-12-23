@@ -6,9 +6,6 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
-import okhttp3.MediaType
-import okhttp3.ResponseBody
-import okhttp3.ResponseBody.Companion
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import za.co.app.bitrisebuddy.model.data.apis.BuildsApi
@@ -74,5 +71,9 @@ class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,priv
         } catch (ex: Exception) {
             Response.error(500, (ex.message ?: "error").toResponseBody())
         }
+    }
+
+    override suspend fun workflows(appSlug: String): Response<V0BuildWorkflowListResponseModel> {
+        TODO("Not yet implemented")
     }
 }

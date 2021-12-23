@@ -17,20 +17,13 @@ class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,priv
 
     override suspend fun getLatestBuildsAsync(): Deferred<Response<V0BuildListAllResponseModel>> {
         return CoroutineScope(Dispatchers.IO).async() {
-            val sharedPreferences = context.getSharedPreferences(RepositoryUtil.USER_PREFERENCES, Context.MODE_PRIVATE)
-
-            val token = sharedPreferences.getString(RepositoryUtil.ACCESS_TOKEN, "none") ?: "none"
-            buildsApi.buildListAll("",null,null,"",null, token)
+            buildsApi.buildListAll("",null,null,"",null, getAccessToken())
         }
 
     }
 
     override suspend fun getAppBuildsAsync(appSlug: String): Deferred<Response<V0BuildListResponseModel>> {
         return CoroutineScope(Dispatchers.IO).async() {
-            val sharedPreferences =
-                context.getSharedPreferences(RepositoryUtil.USER_PREFERENCES, Context.MODE_PRIVATE)
-
-            val token = sharedPreferences.getString(RepositoryUtil.ACCESS_TOKEN, "none") ?: "none"
             buildsApi.buildList(
                 appSlug,
                 null,
@@ -45,7 +38,7 @@ class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,priv
                 null,
                 null,
                 null,
-                token
+                getAccessToken()
             )
         }
     }
@@ -56,15 +49,11 @@ class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,priv
         workflowId: String
     ): Response<V0BuildTriggerRespModel> {
 
-        val sharedPreferences =
-            context.getSharedPreferences(RepositoryUtil.USER_PREFERENCES, Context.MODE_PRIVATE)
-
-        val token = sharedPreferences.getString(RepositoryUtil.ACCESS_TOKEN, "none") ?: "none"
         val buildParams = V0BuildTriggerParamsBuildParams(branch = branch, workflowId = workflowId)
         val request = V0BuildTriggerParams(buildParams = buildParams)
         val response = CoroutineScope(IO).async {
 
-            buildsApi.buildTrigger(appSlug, request, token)
+            buildsApi.buildTrigger(appSlug, request, getAccessToken())
         }
         return try {
             response.await()
@@ -74,6 +63,22 @@ class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,priv
     }
 
     override suspend fun workflows(appSlug: String): Response<V0BuildWorkflowListResponseModel> {
-        TODO("Not yet implemented")
+
+        val response = CoroutineScope(IO).async {
+            buildsApi.buildWorkflowList(appSlug, getAccessToken())
+        }
+
+        return try {
+            response.await()
+        } catch (ex: java.lang.Exception) {
+            Response.error(500, (ex.message ?: "error").toResponseBody())
+        }
+    }
+
+    private fun getAccessToken(): String {
+        val sharedPreferences =
+            context.getSharedPreferences(RepositoryUtil.USER_PREFERENCES, Context.MODE_PRIVATE)
+
+        return sharedPreferences.getString(RepositoryUtil.ACCESS_TOKEN, "none") ?: "none"
     }
 }

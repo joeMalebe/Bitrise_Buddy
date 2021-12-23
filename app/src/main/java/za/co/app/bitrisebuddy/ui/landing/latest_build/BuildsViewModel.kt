@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import za.co.app.bitrisebuddy.model.repository.IBuildsRepository
 import za.co.app.bitrisebuddy.model.repository.RepositoryUtil.UNAUTHORIZED
@@ -45,6 +47,20 @@ class BuildsViewModel @Inject constructor(private val buildsRepository: IBuildsR
                 BuildsViewState.Error(response.message())
             }
             viewState.postValue(currentViewState)
+        }
+    }
+
+    fun triggerBuild(appSlug: String, branch: String, workflowId: String) {
+        viewState.value = BuildsViewState.Loading
+        viewModelScope.launch {
+            val response = buildsRepository.triggerBuild(appSlug, branch, workflowId)
+            if (response.isSuccessful && response.body() != null) {
+                viewState.postValue(BuildsViewState.BuildTriggered(response.body()!!))
+            } else if (response.code() == UNAUTHORIZED) {
+                BuildsViewState.AuthenticationError
+            } else {
+                BuildsViewState.Error(response.message())
+            }
         }
     }
 }

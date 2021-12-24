@@ -1,11 +1,11 @@
 package za.co.app.bitrisebuddy.ui.build.build_configuration
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import za.co.app.bitrisebuddy.R
 import za.co.app.bitrisebuddy.databinding.FragmentBasicBuildBinding
 

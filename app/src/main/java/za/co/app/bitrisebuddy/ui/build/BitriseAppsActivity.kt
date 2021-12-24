@@ -2,9 +2,9 @@ package za.co.app.bitrisebuddy.ui.build
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import za.co.app.bitrisebuddy.databinding.ActivityBitriseAppsBinding
@@ -51,7 +51,7 @@ class BitriseAppsActivity : AppCompatActivity() {
                     }
                     is AppBuildsLoaded -> {
                         binding.pageHeader.buttonStartBuild.setOnClickListener {
-                            startActivity(BuildConfigurationActivity.getStartIntent(this, viewState.builds))
+                            startActivity(BuildConfigurationActivity.getStartIntent(this, viewState.builds, appSlug))
                         }
                         binding.recyclerBuilds.adapter = BitriseAppsAdapter(viewState.builds)
                         binding.recyclerBuilds.layoutManager = LinearLayoutManager(this)

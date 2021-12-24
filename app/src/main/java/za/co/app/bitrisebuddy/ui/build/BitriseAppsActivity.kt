@@ -36,8 +36,9 @@ class BitriseAppsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBitriseAppsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(intent.hasExtra(EXTRA_APP_TITLE)) {
-            binding.pageHeader.textTitle.text = intent.getStringExtra(EXTRA_APP_TITLE)
+        val title = intent.getStringExtra(EXTRA_APP_TITLE)
+        if(title != null) {
+            binding.pageHeader.textTitle.text = title
 
         }
         if (intent.hasExtra(EXTRA_APP_SLUG)) {
@@ -51,7 +52,7 @@ class BitriseAppsActivity : AppCompatActivity() {
                     }
                     is AppBuildsLoaded -> {
                         binding.pageHeader.buttonStartBuild.setOnClickListener {
-                            startActivity(BuildConfigurationActivity.getStartIntent(this, viewState.builds, appSlug))
+                            startActivity(BuildConfigurationActivity.getStartIntent(this, viewState.builds, appSlug, title))
                         }
                         binding.recyclerBuilds.adapter = BitriseAppsAdapter(viewState.builds)
                         binding.recyclerBuilds.layoutManager = LinearLayoutManager(this)

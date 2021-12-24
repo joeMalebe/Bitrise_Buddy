@@ -9,6 +9,8 @@ private const val ADVANCED_BUILDS = 1
 private const val NUMBER_OF_PAGES = 2
 
 class BuildConfigurationAdapter(
+    val appTitle: String,
+    val appSlug: String,
     val availableWorkflows: List<String>,
     val availableBranches: List<String>,
     fragmentManager: FragmentManager,
@@ -16,8 +18,8 @@ class BuildConfigurationAdapter(
 ) : FragmentPagerAdapter(fragmentManager, behavior) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            BASIC_TAB -> BasicBuildFragment(availableWorkflows ,availableBranches)
-            ADVANCED_BUILDS -> BasicBuildFragment(availableWorkflows ,availableBranches)
+            BASIC_TAB -> BasicBuildFragment(appTitle, appSlug, availableBranches, availableWorkflows)
+            ADVANCED_BUILDS -> BasicBuildFragment(appTitle, appSlug, availableBranches, availableWorkflows)
             else -> {
                 throw Throwable("Position $position is invalid")
             }

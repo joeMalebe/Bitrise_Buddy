@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager
 import dagger.hilt.android.AndroidEntryPoint
 import za.co.app.bitrisebuddy.databinding.ActivityBuildConfigurationBinding
 import za.co.app.bitrisebuddy.model.data.models.V0BuildResponseItemModel
+import za.co.app.bitrisebuddy.ui.build.BitriseAppsActivity.Companion.EXTRA_APP_TITLE
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewModel
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewState
 
@@ -24,10 +25,11 @@ class BuildConfigurationActivity : AppCompatActivity() {
         const val EXTRA_APP_SLUG = "EXTRA_APP_SLUG"
 
         @JvmStatic
-        fun getStartIntent(context: Context, apps: List<V0BuildResponseItemModel>, appSlug: String?): Intent {
+        fun getStartIntent(context: Context, apps: List<V0BuildResponseItemModel>, appSlug: String?, title: String?): Intent {
             with(Intent(context, BuildConfigurationActivity::class.java)) {
                 putParcelableArrayListExtra(EXTRA_APPS, apps as ArrayList<out Parcelable>?)
                 putExtra(EXTRA_APP_SLUG, appSlug)
+                putExtra(EXTRA_APP_TITLE, title)
                 return this
             }
         }
@@ -41,7 +43,7 @@ class BuildConfigurationActivity : AppCompatActivity() {
 
         val builds = intent.getParcelableArrayListExtra<V0BuildResponseItemModel>(EXTRA_APPS)
         val appSlug = intent.getStringExtra(EXTRA_APP_SLUG)
-
+        val title = intent.getStringExtra(EXTRA_APP_TITLE)
 
 
         if (builds != null && appSlug != null) {
@@ -54,7 +56,7 @@ class BuildConfigurationActivity : AppCompatActivity() {
                         val availableWorkflows = viewState.workflows.data
                         val transactionViewPager = setupTabs()
                         transactionViewPager.adapter =
-                            BuildConfigurationAdapter(
+                            BuildConfigurationAdapter(title ?: "App" ,appSlug,
                                 availableWorkflows ?: mutableListOf(),
                                 availableBranches.keys.toList(),
                                 supportFragmentManager,

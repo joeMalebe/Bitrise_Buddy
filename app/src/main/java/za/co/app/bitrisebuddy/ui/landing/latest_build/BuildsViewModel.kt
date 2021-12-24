@@ -48,17 +48,17 @@ class BuildsViewModel @Inject constructor(private val buildsRepository: IBuildsR
         }
     }
 
-    fun triggerBuild(appSlug: String, branch: String, workflowId: String) {
+    fun triggerBuild(appSlug: String, branch: String, workflowId: String, message: String) {
         viewState.value = BuildsViewState.Loading
         viewModelScope.launch {
-            val response = buildsRepository.triggerBuild(appSlug, branch, workflowId)
-            if (response.isSuccessful && response.body() != null) {
-                viewState.postValue(BuildsViewState.BuildTriggered(response.body()!!))
+            val response = buildsRepository.triggerBuild(appSlug, branch, workflowId, message)
+            viewState.postValue( if (response.isSuccessful && response.body() != null) {
+                BuildsViewState.BuildTriggered(response.body()!!)
             } else if (response.code() == UNAUTHORIZED) {
                 BuildsViewState.AuthenticationError
             } else {
                 BuildsViewState.Error(response.message())
-            }
+            })
         }
     }
 

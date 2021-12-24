@@ -13,7 +13,8 @@ interface IBuildsRepository {
     suspend fun triggerBuild(
         appSlug: String,
         branch: String,
-        workflowId: String
+        workflowId: String,
+        message: String
     ): Response<V0BuildTriggerRespModel>
     suspend fun workflows(appSlug: String): Response<V0BuildWorkflowListResponseModel>
 }

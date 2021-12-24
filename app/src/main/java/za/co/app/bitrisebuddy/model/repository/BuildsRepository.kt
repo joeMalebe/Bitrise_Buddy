@@ -46,10 +46,11 @@ class BuildsRepository @Inject constructor(private val buildsApi: BuildsApi,priv
     override suspend fun triggerBuild(
         appSlug: String,
         branch: String,
-        workflowId: String
+        workflowId: String,
+        message: String
     ): Response<V0BuildTriggerRespModel> {
 
-        val buildParams = V0BuildTriggerParamsBuildParams(branch = branch, workflowId = workflowId)
+        val buildParams = V0BuildTriggerParamsBuildParams(branch = branch, workflowId = workflowId, commitMessage = message)
         val request = V0BuildTriggerParams(buildParams = buildParams)
         val response = CoroutineScope(IO).async {
 

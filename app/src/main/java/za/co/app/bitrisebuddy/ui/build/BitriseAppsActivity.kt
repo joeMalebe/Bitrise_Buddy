@@ -36,6 +36,12 @@ class BitriseAppsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBitriseAppsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerBuilds.scrollToPosition(0)
         val title = intent.getStringExtra(EXTRA_APP_TITLE)
         if(title != null) {
             binding.pageHeader.textTitle.text = title
@@ -46,7 +52,7 @@ class BitriseAppsActivity : AppCompatActivity() {
             viewModel.loadAppBuilds(appSlug ?: "")
 
             viewModel.viewState.observe(this, { viewState ->
-            when (viewState) {
+                when (viewState) {
                     is Error -> {
 
                     }

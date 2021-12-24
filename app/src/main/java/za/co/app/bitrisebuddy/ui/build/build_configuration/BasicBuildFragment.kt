@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import za.co.app.bitrisebuddy.R
 import za.co.app.bitrisebuddy.databinding.FragmentBasicBuildBinding
-import za.co.app.bitrisebuddy.ui.build.BitriseAppsActivity
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewModel
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewState
 
@@ -67,7 +66,7 @@ class BasicBuildFragment(
                 }
 
                 is BuildsViewState.BuildTriggered -> {
-                    context?.startActivity(BitriseAppsActivity.getStartIntent(context, appSlug, appTitle))
+                    activity?.finish()
                 }
             }
         })

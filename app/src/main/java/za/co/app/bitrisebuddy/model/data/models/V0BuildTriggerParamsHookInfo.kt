@@ -14,5 +14,5 @@ import com.squareup.moshi.JsonClass
  */
 @JsonClass(generateAdapter = true)
 data class V0BuildTriggerParamsHookInfo(
-    @Json(name = "type") @field:Json(name = "type") var type: String? = null
+    @Json(name = "type") @field:Json(name = "type") var type: String? = "bitrise"
 )

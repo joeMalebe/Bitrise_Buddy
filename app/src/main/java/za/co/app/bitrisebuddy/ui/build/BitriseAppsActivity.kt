@@ -2,12 +2,13 @@ package za.co.app.bitrisebuddy.ui.build
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import za.co.app.bitrisebuddy.databinding.ActivityBitriseAppsBinding
+import za.co.app.bitrisebuddy.ui.build.build_configuration.BuildConfigurationActivity
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewModel
 import za.co.app.bitrisebuddy.ui.landing.latest_build.BuildsViewState.*
 
@@ -35,8 +36,15 @@ class BitriseAppsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBitriseAppsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(intent.hasExtra(EXTRA_APP_TITLE)) {
-            binding.pageHeader.textTitle.text = intent.getStringExtra(EXTRA_APP_TITLE)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerBuilds.scrollToPosition(0)
+        val title = intent.getStringExtra(EXTRA_APP_TITLE)
+        if(title != null) {
+            binding.pageHeader.textTitle.text = title
 
         }
         if (intent.hasExtra(EXTRA_APP_SLUG)) {
@@ -44,13 +52,13 @@ class BitriseAppsActivity : AppCompatActivity() {
             viewModel.loadAppBuilds(appSlug ?: "")
 
             viewModel.viewState.observe(this, { viewState ->
-            when (viewState) {
+                when (viewState) {
                     is Error -> {
 
                     }
                     is AppBuildsLoaded -> {
                         binding.pageHeader.buttonStartBuild.setOnClickListener {
-                            startActivity(BuildConfigurationActivity.getStartIntent(this, viewState.builds))
+                            startActivity(BuildConfigurationActivity.getStartIntent(this, viewState.builds, appSlug, title))
                         }
                         binding.recyclerBuilds.adapter = BitriseAppsAdapter(viewState.builds)
                         binding.recyclerBuilds.layoutManager = LinearLayoutManager(this)
